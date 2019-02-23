@@ -58,12 +58,10 @@ const storage = multer.diskStorage({
 const upload = multer({ fileFilter, storage: storage })
 
 app.post('/:username', upload.single('avatar'), (req, res, next) => {
-  console.log(req.file)
   if (!req.file) {
     return next(new Error('No file provided'))
   }
   const success = 'Uploaded the file successfully!'
-  console.log(success)
   return res.status(200).json({ message: success })
 })
 
